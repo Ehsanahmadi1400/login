@@ -1,0 +1,84 @@
+http://127.0.0.1:8000/login/auth/check/
+http://127.0.0.1:8000/login/auth/register/verify/
+http://127.0.0.1:8000/login/auth/login/
+http://127.0.0.1:8000/login/auth/register/details/
+http://127.0.0.1:8000/login/profile/
+
+///////////////////////////////////////////////////////////////
+1. CheckMobileView (POST: /auth/check/)
+
+Request Payload:
+
+{
+    "mobile": "09120000000"
+}
+
+Response:
+
+    If registered: { "registered": true }
+
+    If not registered: { "registered": false, "otp_code": "123456" }
+
+2. LoginView (POST: /auth/login/)
+
+Request Payload:
+
+{
+    "mobile": "09120000000",
+    "password": "yourpassword"
+}
+
+Response:
+
+    Success: { "detail": "Login successful" }
+
+    Failure (invalid credentials): { "detail": "Invalid credentials" }
+
+3. VerifyOTPView (POST: /auth/register/verify/)
+
+Request Payload:
+
+{
+    "mobile": "09120000000",
+    "code": "123456"
+}
+
+Response:
+
+    Success: { "detail": "OTP verified, continue registration" }
+
+    Failure (invalid code): { "detail": "Invalid or expired code" }
+
+4. CompleteRegistrationView (POST: /auth/register/details/)
+
+Request Payload:
+
+{
+    "mobile": "09120000000",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "password": "newpassword"
+}
+
+Response:
+
+    Success: { "detail": "Registration complete" }
+
+    Failure (user not found): { "detail": "User not found" }
+
+5. ProfileView (GET: /profile/)
+
+No Payload (JWT required)
+
+    Success:
+
+{
+    "mobile": "09120000000",
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "john.doe@example.com",
+    "detail": "You are logged in."
+}
+
+
