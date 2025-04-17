@@ -1,17 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
-from django.utils import timezone
 from datetime import timedelta
-
-from django.core.exceptions import ValidationError
-import re
-
-
-def validate_mobile(mobile):
-    pattern = r'^09\d{9}$'
-    if not re.match(pattern, mobile):
-        raise ValidationError("Mobile number must start with '09' and be exactly 11 digits long.")
 
 
 class UserManager(BaseUserManager):
@@ -45,10 +35,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.mobile
-
-    def clean(self):
-        super().clean()  # Call the parent class's clean method
-        validate_mobile(self.mobile)
 
 
 class OTP(models.Model):

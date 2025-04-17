@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from login import views
 
 urlpatterns = [
     path('auth/check/', views.CheckMobileView.as_view(), name='check_mobile'),

@@ -1,8 +1,8 @@
-http://127.0.0.1:8000/login/auth/check/
-http://127.0.0.1:8000/login/auth/register/verify/
-http://127.0.0.1:8000/login/auth/login/
-http://127.0.0.1:8000/login/auth/register/details/
-http://127.0.0.1:8000/login/profile/
+http://127.0.0.1:8000/api/auth/check/
+http://127.0.0.1:8000/api/auth/register/verify/
+http://127.0.0.1:8000/api/auth/login/
+http://127.0.0.1:8000/api/auth/register/details/
+http://127.0.0.1:8000/api/profile/
 
 ///////////////////////////////////////////////////////////////
 1. CheckMobileView (POST: /auth/check/)
@@ -19,22 +19,8 @@ Response:
 
     If not registered: { "registered": false, "otp_code": "123456" }
 
-2. LoginView (POST: /auth/login/)
-
-Request Payload:
-
-{
-    "mobile": "09120000000",
-    "password": "yourpassword"
-}
-
-Response:
-
-    Success: { "detail": "Login successful" }
-
-    Failure (invalid credentials): { "detail": "Invalid credentials" }
-
-3. VerifyOTPView (POST: /auth/register/verify/)
+----------------------------
+2. VerifyOTPView (POST: /auth/register/verify/)
 
 Request Payload:
 
@@ -49,15 +35,34 @@ Response:
 
     Failure (invalid code): { "detail": "Invalid or expired code" }
 
+
+-----------------------
+3. LoginView (POST: /auth/login/)
+
+Request Payload:
+
+{
+    "mobile": "09120000000",
+    "password": "yourpassword"
+}
+
+Response:
+
+    Success: { "detail": "Login successful" }
+
+    Failure (invalid credentials): { "detail": "Invalid credentials" }
+
+
+--------------------------
 4. CompleteRegistrationView (POST: /auth/register/details/)
 
 Request Payload:
 
 {
     "mobile": "09120000000",
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john.doe@example.com",
+    "first_name": "Ehsan",
+    "last_name": "Ahmadi",
+    "email": "ehsan.btg@gmail.com",
     "password": "newpassword"
 }
 
